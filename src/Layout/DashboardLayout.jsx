@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import logo from "../assets/logo/educations_logo.png";
 import {
    FaBookmark,
    FaEdit,
@@ -51,8 +52,13 @@ const DashboardLayout = () => {
    ];
    return (
       <div className="grid grid-cols-8">
-         <div className="col-span-2 h-screen p-5 bg-yellow-200">
-            <h2 className="text-2xl font-bold mb-5">Spoken English</h2>
+         <div className="col-span-2 h-screen p-5">
+            <div className="w-[200px] h-[100px] mb-5">
+               <img
+                  src={logo}
+                  alt=""
+               />
+            </div>
             <div className="pl-5">
                <NavLink
                   to="/"
@@ -109,10 +115,12 @@ const DashboardLayout = () => {
             </div>
          </div>
          <div className="col-span-6">
-            <div className="text-2xl font-semibold bg-yellow-200 capitalize p-4 px-8">
+            <div className="text-2xl font-semibold capitalize p-4 px-8">
                {headTitle ? headTitle : user && `${user?.role} Dashboard`}
             </div>
-            <Outlet />
+            <div className="bg-[#e7fdfe] min-h-screen p-5">
+               <Outlet />
+            </div>
          </div>
       </div>
    );
