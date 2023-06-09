@@ -4,14 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import InputGroup from "../../../components/InputGroup";
 import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
-import { FcProcess } from "react-icons/fc";
+import { FcGoogle, FcProcess } from "react-icons/fc";
 
 const Login = () => {
    const [isAgree, setIsAgree] = useState(false);
    const [process, setProcess] = useState(false);
    const location = useLocation();
    const navigate = useNavigate();
-   const { loginCreatedUser } = useAuth();
+   const { loginCreatedUser, loginWithGoogle } = useAuth();
    const {
       register,
       handleSubmit,
@@ -50,7 +50,7 @@ const Login = () => {
       }
    };
    return (
-      <div>
+      <div className="cs-container py-14">
          <h2 className="text-3xl text-gray-600 font-medium text-center mb-5">
             Sign In
          </h2>
@@ -99,15 +99,23 @@ const Login = () => {
                      disabled={!isAgree}
                      type="submit"
                      value="Submit"
-                     className="py-2 px-5 cursor-pointer disabled:bg-blue-300 bg-blue-500 text-white rounded-md my-3"
+                     className="py-2 px-5 cursor-pointer disabled:bg-gray-400 bg-teal-600 text-white rounded-md my-3"
                   />
                )}
                <Link
-                  className="text-blue-600"
+                  className="text-teal-600"
                   to="/register"
                >
                   New to? Register here
                </Link>
+            </div>
+            <div className="flex justify-center pt-5">
+               <div
+                  onClick={loginWithGoogle}
+                  className="py-2 px-5 w-full border-2 hover:scale-95 duration-300 border-teal-500 flex items-center justify-center gap-3 rounded-md font-medium cursor-pointer"
+               >
+                  <FcGoogle className="text-2xl" /> Google Login
+               </div>
             </div>
          </form>
       </div>

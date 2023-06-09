@@ -21,6 +21,8 @@ const AuthProvider = ({ children }) => {
    // const userRole = "";
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
+   console.log(loading);
+   console.log(user);
 
    const createNewUser = ({ email, password }) => {
       setLoading(true);
@@ -55,8 +57,10 @@ const AuthProvider = ({ children }) => {
                   timer: 1500,
                });
             }
+            setLoading(false);
          })
          .catch((error) => {
+            setLoading(false);
             console.log(error);
          });
    };
@@ -74,6 +78,9 @@ const AuthProvider = ({ children }) => {
                })
                .then((res) => {
                   localStorage.setItem("access-token", res.data.token);
+                  setLoading(false);
+               })
+               .catch((error) => {
                   setLoading(false);
                });
          } else {
