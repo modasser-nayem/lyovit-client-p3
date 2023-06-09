@@ -15,6 +15,10 @@ import Swal from "sweetalert2";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+   // const userRole = "admin";
+   // const userRole = "instructor";
+   const userRole = "student";
+   // const userRole = "";
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
@@ -63,6 +67,7 @@ const AuthProvider = ({ children }) => {
          setUser(currentUser);
          // get and set token
          if (currentUser) {
+            currentUser["role"] = userRole;
             axios
                .post("http://localhost:4000/jwt", {
                   email: currentUser.email,

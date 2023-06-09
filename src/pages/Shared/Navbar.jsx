@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 
 const Navbar = () => {
-   const isAdmin = true;
    const { user, logoutUser } = useAuth();
    return (
       <nav className="h-[10vh] w-full bg-blue-500 flex items-center justify-center">
@@ -27,16 +26,20 @@ const Navbar = () => {
                >
                   access
                </NavLink>
-               <NavLink
-                  to={`${
-                     isAdmin
-                        ? "dashboard/admin-dashboard"
-                        : "dashboard/user-dashboard"
-                  }`}
-                  className="cs-nav-link"
-               >
-                  Dashboard
-               </NavLink>
+               {user?.role && (
+                  <NavLink
+                     to={`${
+                        user.role === "admin"
+                           ? "dashboard/admin-dashboard"
+                           : user.role === "instructor"
+                           ? "dashboard/instructor-dashboard"
+                           : "dashboard/student-dashboard"
+                     }`}
+                     className="cs-nav-link"
+                  >
+                     Dashboard
+                  </NavLink>
+               )}
             </div>
             {/* <> =========================== <> */}
             <div className="flex-none">
