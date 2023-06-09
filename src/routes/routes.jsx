@@ -15,6 +15,9 @@ import StudentDashboard from "../pages/Dashboard/StudentDashboard/StudentDashboa
 import InstructorDashboard from "../pages/Dashboard/InstructorDashboard/InstructorDashboard";
 import ManageUsers from "../pages/Dashboard/AdmiinDashboard/ManageUsers/ManageUsers";
 import ManageClasses from "../pages/Dashboard/AdmiinDashboard/ManageClasses/ManageClasses";
+import AddClass from "../pages/Dashboard/InstructorDashboard/AddClass/AddClass";
+import UpdateClass from "../pages/Dashboard/InstructorDashboard/UpdateClass/UpdateClass";
+import MyClasses from "../pages/Dashboard/InstructorDashboard/MyClasses/MyClasses";
 
 export const router = createBrowserRouter([
    {
@@ -83,11 +86,19 @@ export const router = createBrowserRouter([
             ],
          },
          {
-            path: "user-dashboard",
+            path: "instructor-dashboard",
             element: <InstructorDashboard />,
+            children: [
+               { path: "add-class", element: <AddClass /> },
+               {
+                  path: "update-class",
+                  element: <UpdateClass />,
+               },
+               { path: "my-classes", element: <MyClasses /> },
+            ],
          },
          {
-            path: "user-dashboard",
+            path: "student-dashboard",
             element: <StudentDashboard />,
          },
       ],
