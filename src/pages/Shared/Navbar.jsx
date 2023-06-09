@@ -15,18 +15,18 @@ const Navbar = () => {
             </div>
             {/* <> =========================== <> */}
             <div className="flex gap-4">
-               <Link
+               <NavLink
                   to="/"
                   className="cs-nav-link"
                >
                   Home
-               </Link>
-               <Link
+               </NavLink>
+               <NavLink
                   to="/access"
                   className="cs-nav-link"
                >
                   access
-               </Link>
+               </NavLink>
                <NavLink
                   to={`${
                      isAdmin

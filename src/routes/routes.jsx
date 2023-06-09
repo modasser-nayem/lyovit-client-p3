@@ -13,6 +13,8 @@ import AdminDashboard from "../pages/Dashboard/AdmiinDashboard/AdminDashboard";
 import Access from "../pages/Access";
 import StudentDashboard from "../pages/Dashboard/StudentDashboard/StudentDashboard";
 import InstructorDashboard from "../pages/Dashboard/InstructorDashboard/InstructorDashboard";
+import ManageUsers from "../pages/Dashboard/AdmiinDashboard/ManageUsers/ManageUsers";
+import ManageClasses from "../pages/Dashboard/AdmiinDashboard/ManageClasses/ManageClasses";
 
 export const router = createBrowserRouter([
    {
@@ -69,6 +71,16 @@ export const router = createBrowserRouter([
          {
             path: "admin-dashboard",
             element: <AdminDashboard />,
+            children: [
+               {
+                  path: "manage-users",
+                  element: <ManageUsers />,
+               },
+               {
+                  path: "manage-classes",
+                  element: <ManageClasses />,
+               },
+            ],
          },
          {
             path: "user-dashboard",

@@ -1,10 +1,10 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 const AdminDashboard = () => {
    return (
       <div>
-         <div>AdminDashboard</div>
-         <div>AdminDashboard2</div>
+         <Outlet />
       </div>
    );
 };

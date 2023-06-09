@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.active {
+   color: rgb(229, 92, 33);
+}
+
 @layer components {
    .cs-container {
       @apply xl:w-[1100px] px-5 xl:px-1 mx-auto;
@@ -11,5 +15,8 @@
    }
    .cs-nav-active {
       @apply text-black;
+   }
+   .dash-nav-link {
+      @apply flex items-center gap-2 font-semibold;
    }
 }
