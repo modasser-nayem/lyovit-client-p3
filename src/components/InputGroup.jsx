@@ -1,0 +1,30 @@
+import React from "react";
+
+const InputGroup = ({
+   register,
+   name,
+   validation,
+   type,
+   placeholder,
+   errorMessage,
+   defaultValue,
+}) => {
+   return (
+      <div className="my-5">
+         <input
+            {...register(name, validation)}
+            type="text"
+            defaultValue={defaultValue}
+            placeholder={placeholder}
+            className={`w-full border-b focus:border-blue-500 focus:placeholder:text-blue-500 border-black outline-none py-2 pr-3 ${
+               errorMessage && "border-red-500"
+            }`}
+         />
+         {errorMessage && (
+            <p className="text-xs text-red-500 mt-1">{errorMessage}</p>
+         )}
+      </div>
+   );
+};
+
+export default InputGroup;

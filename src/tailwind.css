@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+   .cs-container {
+      @apply xl:w-[1100px] px-5 xl:px-1 mx-auto;
+   }
+   .cs-nav-link {
+      @apply text-white font-semibold uppercase;
+   }
+   .cs-nav-active {
+      @apply text-black;
+   }
+}
