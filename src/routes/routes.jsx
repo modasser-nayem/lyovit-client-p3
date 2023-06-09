@@ -20,6 +20,8 @@ import UpdateClass from "../pages/Dashboard/InstructorDashboard/UpdateClass/Upda
 import MyClasses from "../pages/Dashboard/InstructorDashboard/MyClasses/MyClasses";
 import MySelectedClasses from "../pages/Dashboard/StudentDashboard/MySelectedClasses/MySelectedClasses";
 import MyEnrolledClasses from "../pages/Dashboard/StudentDashboard/MyEnrolledClasses/MyEnrolledClasses";
+import Instructors from "../pages/Instructors/Instructors";
+import Classes from "../pages/Classes/Classes";
 
 export const router = createBrowserRouter([
    {
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
          {
             path: "/",
             element: <Home />,
+         },
+         {
+            path: "/instructors",
+            element: <Instructors />,
+         },
+         {
+            path: "/classes",
+            element: <Classes />,
          },
          {
             path: "product-details/:id",
@@ -72,6 +82,7 @@ export const router = createBrowserRouter([
    {
       path: "dashboard",
       element: <DashboardLayout />,
+      errorElement: <Error />,
       children: [
          {
             path: "admin-dashboard",

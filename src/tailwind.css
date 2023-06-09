@@ -11,7 +11,7 @@
       @apply xl:w-[1100px] px-5 xl:px-1 mx-auto;
    }
    .cs-nav-link {
-      @apply text-white font-semibold uppercase;
+      @apply text-white font-semibold;
    }
    .cs-nav-active {
       @apply text-black;

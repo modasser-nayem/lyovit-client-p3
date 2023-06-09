@@ -21,6 +21,18 @@ const Navbar = () => {
                   Home
                </NavLink>
                <NavLink
+                  to="/instructors"
+                  className="cs-nav-link"
+               >
+                  Instructors
+               </NavLink>
+               <NavLink
+                  to="/classes"
+                  className="cs-nav-link"
+               >
+                  Classes
+               </NavLink>
+               <NavLink
                   to="/access"
                   className="cs-nav-link"
                >
