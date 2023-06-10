@@ -16,7 +16,6 @@ import useAuth from "../Hooks/useAuth";
 const DashboardLayout = () => {
    const { user } = useAuth();
    const [headTitle, setHeadTitle] = useState("");
-   console.log(headTitle);
    const adminLink = [
       {
          path: "manage-users",

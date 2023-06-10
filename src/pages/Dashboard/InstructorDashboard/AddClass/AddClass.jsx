@@ -5,11 +5,13 @@ import Swal from "sweetalert2";
 import { FcProcess } from "react-icons/fc";
 import useAuth from "../../../../Hooks/useAuth";
 import InputGroup from "../../../../components/InputGroup";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 
 const AddClass = () => {
    const [process, setProcess] = useState(false);
    const navigate = useNavigate();
    const { user } = useAuth();
+   const [axiosSecure] = useAxiosSecure();
    const {
       register,
       handleSubmit,
@@ -18,16 +20,26 @@ const AddClass = () => {
    } = useForm();
    const onSubmit = (data) => {
       if (data) {
-         const {
-            class_name,
-            img,
-            instructor_name,
-            instructor_email,
-            seats,
-            price,
-         } = data;
-         console.log(data);
+         const newClass = {
+            class_name: data.class_name,
+            img: data.img,
+            instructor_name: data.instructor_name,
+            instructor_email: data.instructor_email,
+            seats: parseInt(data.seats),
+            price: parseFloat(data.price),
+         };
          setProcess(true);
+         axiosSecure
+            .post("/class", newClass)
+            .then((res) => {
+               console.log(res);
+               setProcess(false);
+               reset();
+            })
+            .catch((error) => {
+               console.log(error);
+               setProcess(false);
+            });
          // loginCreatedUser({ email, password })
          //    .then(() => {
          //       setProcess(false);
