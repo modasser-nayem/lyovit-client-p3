@@ -104,7 +104,7 @@ export const router = createBrowserRouter([
             children: [
                { path: "add-class", element: <AddClass /> },
                {
-                  path: "update-class",
+                  path: "update-class/:id",
                   element: <UpdateClass />,
                },
                { path: "my-classes", element: <MyClasses /> },

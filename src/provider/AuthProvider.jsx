@@ -15,8 +15,8 @@ import Swal from "sweetalert2";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-   // const userRole = "admin";
-   const userRole = "instructor";
+   const userRole = "admin";
+   // const userRole = "instructor";
    // const userRole = "student";
    // const userRole = "";
    const [user, setUser] = useState(null);

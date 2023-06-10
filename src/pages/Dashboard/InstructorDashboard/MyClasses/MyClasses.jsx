@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import EnrolledTableRow from "../../../Shared/EnrolledTableRow";
+import MyClassTableRow from "./MyClassTableRow";
 
 const MyClasses = () => {
    const [myClasses, setMyClasses] = useState(null);
@@ -48,7 +48,12 @@ const MyClasses = () => {
                         </th>
                         <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
-                              Details
+                              Status
+                           </div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                           <div className="text-base font-semibold text-center">
+                              Action
                            </div>
                         </th>
                      </tr>
@@ -56,9 +61,9 @@ const MyClasses = () => {
                   <tbody className="text-sm divide-y divide-gray-100">
                      {myClasses &&
                         myClasses.map((myClasses, i) => (
-                           <EnrolledTableRow
+                           <MyClassTableRow
                               key={myClasses._id}
-                              enrolledClass={myClasses}
+                              myClass={myClasses}
                               number={i + 1}
                            />
                         ))}

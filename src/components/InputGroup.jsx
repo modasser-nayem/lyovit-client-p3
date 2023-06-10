@@ -15,9 +15,9 @@ const InputGroup = ({
          <input
             {...register(name, validation)}
             type="text"
-            defaultValue={defaultValue}
             placeholder={placeholder}
             value={value}
+            defaultValue={defaultValue}
             className={`w-full border-b focus:border-teal-500 focus:placeholder:text-teal-500 border-black outline-none py-2 pr-3 ${
                errorMessage && "border-red-500"
             }`}

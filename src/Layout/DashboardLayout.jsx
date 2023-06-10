@@ -35,7 +35,6 @@ const DashboardLayout = () => {
          icon: <FaRegListAlt />,
       },
       { path: "add-class", name: "Add Class", icon: <FaPlus /> },
-      { path: "update-class", name: "Update Class", icon: <FaEdit /> },
    ];
    const studentLink = [
       {
