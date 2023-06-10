@@ -21,8 +21,6 @@ const AuthProvider = ({ children }) => {
    // const userRole = "";
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
-   console.log(loading);
-   console.log(user);
 
    const createNewUser = ({ email, password }) => {
       setLoading(true);
@@ -41,7 +39,20 @@ const AuthProvider = ({ children }) => {
    const loginWithGoogle = () => {
       setLoading(true);
       const googleProvider = new GoogleAuthProvider();
-      return signInWithPopup(auth, googleProvider);
+      signInWithPopup(auth, googleProvider).then((result) => {
+         console.log(result.user.displayName);
+         fetch("http://localhost:4000/createUser", {
+            method: "POST",
+            headers: {
+               "content-type": "application/json",
+            },
+            body: JSON.stringify({
+               email: result.user.email,
+               name: result.user.displayName,
+               photoURL: result.user.photoURL,
+            }),
+         });
+      });
    };
 
    const logoutUser = (toastMessage) => {
@@ -72,16 +83,24 @@ const AuthProvider = ({ children }) => {
          // get and set token
          if (currentUser) {
             currentUser["role"] = userRole;
-            axios
-               .post("http://localhost:4000/jwt", {
+            fetch("http://localhost:4000/jwt", {
+               method: "POST",
+               headers: {
+                  "content-type": "application/json",
+               },
+               body: JSON.stringify({
                   email: currentUser.email,
-               })
-               .then((res) => {
-                  localStorage.setItem("access-token", res.data.token);
+               }),
+            })
+               .then((res) => res.json())
+               .then((data) => {
+                  localStorage.setItem("access-token", data.token);
                   setLoading(false);
                })
                .catch((error) => {
+                  console.log("Error", error);
                   setLoading(false);
+                  setUser(null);
                });
          } else {
             localStorage.removeItem("access-token");

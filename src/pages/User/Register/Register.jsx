@@ -39,7 +39,7 @@ const Register = () => {
                   headers: {
                      "content-type": "application/json",
                   },
-                  body: JSON.stringify({ email, name }),
+                  body: JSON.stringify({ email, name, photoURL }),
                }).then(() => {
                   setProcess(false);
                   Swal.fire({

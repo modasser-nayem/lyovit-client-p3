@@ -30,7 +30,7 @@ const SelectTableRow = ({ selectClass, number }) => {
             <div className="flex items-center w-fit">
                <div className="w-12 h-12 flex-shrink-0 mr-2 sm:mr-3">
                   <img
-                     className="rounded-full"
+                     className="rounded-full h-full w-full"
                      src={img}
                      width="60"
                      height="60"

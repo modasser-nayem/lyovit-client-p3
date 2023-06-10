@@ -8,7 +8,6 @@ import logo from "../../assets/logo/educations_logo.png";
 const Navbar = () => {
    const [isOpen, setIsOpen] = useState(false);
    const { user, loading, logoutUser } = useAuth();
-   console.log(loading);
    return (
       <nav className="flex z-50 fixed items-center bg-white/30 backdrop-blur-2xl top-0 w-full h-[11vh] border">
          <div className="navbar cs-container">

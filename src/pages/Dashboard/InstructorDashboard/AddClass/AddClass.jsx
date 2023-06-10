@@ -32,39 +32,33 @@ const AddClass = () => {
          axiosSecure
             .post("/class", newClass)
             .then((res) => {
-               console.log(res);
                setProcess(false);
                reset();
+               if (res.data.success) {
+                  Swal.fire({
+                     position: "center",
+                     icon: "success",
+                     title: "Class Create Successful",
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
+                  navigate("/dashboard/instructor-dashboard/my-classes", {
+                     replace: true,
+                  });
+               } else {
+                  Swal.fire({
+                     position: "center",
+                     icon: "warning",
+                     title: "Class Create Failed!",
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
+               }
             })
             .catch((error) => {
                console.log(error);
                setProcess(false);
             });
-         // loginCreatedUser({ email, password })
-         //    .then(() => {
-         //       setProcess(false);
-         //       Swal.fire({
-         //          position: "center",
-         //          icon: "success",
-         //          title: "Successfully Login",
-         //          showConfirmButton: false,
-         //          timer: 1500,
-         //       });
-         //       navigate(location.state?.from?.pathname || "/", {
-         //          replace: true,
-         //       });
-         //       reset();
-         //    })
-         //    .catch((error) => {
-         //       setProcess(false);
-         //       Swal.fire({
-         //          position: "center",
-         //          icon: "warning",
-         //          title: error.message.slice(22, -2),
-         //          showConfirmButton: false,
-         //          timer: 1500,
-         //       });
-         //    });
       }
    };
    return (
