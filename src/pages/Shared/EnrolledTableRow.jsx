@@ -1,12 +1,13 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuth from "../../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAuth from "../../Hooks/useAuth";
 
-const TableRow = ({ selectClass, number }) => {
+const EnrolledTableRow = ({ enrolledClass, number }) => {
    const navigate = useNavigate();
    const { user } = useAuth();
-   const { _id, img, class_name, instructor_name, price, seats } = selectClass;
+   const { _id, img, class_name, instructor_name, price, seats } =
+      enrolledClass;
    const handleDetailsClick = () => {
       Swal.fire({
          title: "See You Details!",
@@ -75,4 +76,4 @@ const TableRow = ({ selectClass, number }) => {
    );
 };
 
-export default TableRow;
+export default EnrolledTableRow;

@@ -16,8 +16,8 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
    // const userRole = "admin";
-   // const userRole = "instructor";
-   const userRole = "student";
+   const userRole = "instructor";
+   // const userRole = "student";
    // const userRole = "";
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);

@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import TableRow from "../../../Shared/Table/TableRow";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import EnrolledTableRow from "../../../Shared/EnrolledTableRow";
 
 const MyEnrolledClasses = () => {
-   const [selectedClasses, setSelectedClasses] = useState(null);
+   const [enrolledClasses, setenrolledClasses] = useState(null);
    const [axiosSecure] = useAxiosSecure();
    useEffect(() => {
       axiosSecure.get("my-enrolled-class").then((res) => {
-         setSelectedClasses(res.data.data);
+         setenrolledClasses(res.data.data);
       });
    }, []);
    return (
       <div className="p-3">
-         {selectedClasses === null ? (
+         {enrolledClasses === null ? (
             <h2 className="text-3xl font-semibold animate-pulse text-center pt-16">
                Loading...
             </h2>
@@ -54,11 +54,11 @@ const MyEnrolledClasses = () => {
                      </tr>
                   </thead>
                   <tbody className="text-sm divide-y divide-gray-100">
-                     {selectedClasses &&
-                        selectedClasses.map((selectClass, i) => (
-                           <TableRow
-                              key={selectClass._id}
-                              selectClass={selectClass}
+                     {enrolledClasses &&
+                        enrolledClasses.map((enrolledClass, i) => (
+                           <EnrolledTableRow
+                              key={enrolledClass._id}
+                              enrolledClass={enrolledClass}
                               number={i + 1}
                            />
                         ))}

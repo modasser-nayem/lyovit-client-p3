@@ -5,6 +5,7 @@ const InputGroup = ({
    name,
    validation,
    type,
+   value,
    placeholder,
    errorMessage,
    defaultValue,
@@ -16,6 +17,7 @@ const InputGroup = ({
             type="text"
             defaultValue={defaultValue}
             placeholder={placeholder}
+            value={value}
             className={`w-full border-b focus:border-teal-500 focus:placeholder:text-teal-500 border-black outline-none py-2 pr-3 ${
                errorMessage && "border-red-500"
             }`}

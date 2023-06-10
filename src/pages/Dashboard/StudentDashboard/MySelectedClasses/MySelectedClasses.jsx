@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import TableRow from "../../../Shared/Table/TableRow";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import SelectTableRow from "../../../Shared/SelectTableRow";
 
 const MySelectedClasses = () => {
-   const [selectedClasses, setSelectedClasses] = useState([]);
+   const [selectedClasses, setSelectedClasses] = useState(null);
    const [axiosSecure] = useAxiosSecure();
    useEffect(() => {
       axiosSecure.get("my-selected-class").then((res) => {
@@ -12,7 +12,7 @@ const MySelectedClasses = () => {
    }, []);
    return (
       <div className="p-3">
-         {selectedClasses.length === 0 ? (
+         {selectedClasses === null ? (
             <h2 className="text-3xl font-semibold animate-pulse text-center pt-16">
                Loading...
             </h2>
@@ -56,7 +56,7 @@ const MySelectedClasses = () => {
                   <tbody className="text-sm divide-y divide-gray-100">
                      {selectedClasses &&
                         selectedClasses.map((selectClass, i) => (
-                           <TableRow
+                           <SelectTableRow
                               key={selectClass._id}
                               selectClass={selectClass}
                               number={i + 1}
