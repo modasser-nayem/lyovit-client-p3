@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../Layout/MainLayout";
 import Error from "../pages/Error/Error";
 import Home from "../pages/Home/Home/Home";
-import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import PrivateRoute from "../routes/PrivateRouter";
 import Profile from "../pages/User/Profile/Profile";
 import UpdateProfile from "../pages/User/UpdateProfile/UpdateProfile";
@@ -22,6 +21,7 @@ import MySelectedClasses from "../pages/Dashboard/StudentDashboard/MySelectedCla
 import MyEnrolledClasses from "../pages/Dashboard/StudentDashboard/MyEnrolledClasses/MyEnrolledClasses";
 import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
+import ClassDetails from "../pages/ClassDetails/ClassDetails";
 
 export const router = createBrowserRouter([
    {
@@ -42,8 +42,8 @@ export const router = createBrowserRouter([
             element: <Classes />,
          },
          {
-            path: "product-details/:id",
-            element: <ProductDetails />,
+            path: "class-details/:id",
+            element: <ClassDetails />,
          },
          {
             path: "register",

@@ -58,7 +58,7 @@ const EnrolledTableRow = ({ enrolledClass, number }) => {
                {user ? (
                   <Link
                      className="btn btn-sm btn-ghost"
-                     to={`/toy-details/${_id}`}
+                     to={`/class-details/${_id}`}
                   >
                      Details
                   </Link>
