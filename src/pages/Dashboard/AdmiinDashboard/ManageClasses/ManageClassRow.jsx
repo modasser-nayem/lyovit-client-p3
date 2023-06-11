@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FcProcess } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import FeedbackModal from "./FeedbackModal";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const ManageClassRow = ({ singleClass, number, refetch }) => {
    const {
@@ -13,7 +15,9 @@ const ManageClassRow = ({ singleClass, number, refetch }) => {
       price,
       seats,
       status,
+      feedback,
    } = singleClass;
+   const [axiosSecure] = useAxiosSecure();
    const [approvedProcess, setApprovedProcess] = useState(false);
    const [denyProcess, setDenyProcess] = useState(false);
    const updateClassStatus = (status) => {
@@ -22,6 +26,42 @@ const ManageClassRow = ({ singleClass, number, refetch }) => {
       } else {
          setDenyProcess(true);
       }
+      axiosSecure
+         .patch(`class-status/${_id}?status=${status}`)
+         .then((res) => {
+            if (status === "approved") {
+               setApprovedProcess(false);
+            } else {
+               setDenyProcess(false);
+            }
+            if (res.data.success) {
+               refetch();
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: res.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         })
+         .catch((error) => {
+            if (status === "approved") {
+               setApprovedProcess(false);
+            } else {
+               setDenyProcess(false);
+            }
+            console.log(error.response.data);
+            if (!error.response.data.success) {
+               Swal.fire({
+                  position: "center",
+                  icon: "warning",
+                  title: error.response.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         });
    };
    return (
       <tr>
@@ -99,17 +139,16 @@ const ManageClassRow = ({ singleClass, number, refetch }) => {
                </button>
                <a href="#my_modal_8">
                   <button
-                     disabled={
-                        status === "approved" || status === "deny"
-                           ? true
-                           : false
-                     }
+                     disabled={feedback ? true : false}
                      className="py-1 px-2 text-white rounded-md text-xs bg-violet-600 disabled:bg-gray-300 min-w-[70px]"
                   >
                      Feedback
                   </button>
                </a>
-               <FeedbackModal />
+               <FeedbackModal
+                  refetch={refetch}
+                  _id={_id}
+               />
             </div>
          </td>
          <td className="p-2 whitespace-nowrap">

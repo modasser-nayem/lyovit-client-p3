@@ -1,18 +1,51 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { FcProcess } from "react-icons/fc";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const FeedbackModal = () => {
+const FeedbackModal = ({ _id, refetch }) => {
+   const [axiosSecure] = useAxiosSecure();
+   const refClose = useRef();
    const [feedback, setFeedback] = useState("");
    const [feedbackError, setFeedbackError] = useState("");
    const [feedbackProcess, setFeedbackProcess] = useState(false);
    const handleClick = () => {
       setFeedbackProcess(true);
       if (!feedback) {
+         setFeedbackProcess(false);
          setFeedbackError("Please provide your feedback");
       } else {
          setFeedbackError("");
+         axiosSecure
+            .patch(`class-feedback/${_id}`, { feedback })
+            .then((res) => {
+               setFeedbackProcess(false);
+               if (res.data.success) {
+                  refetch();
+                  Swal.fire({
+                     position: "center",
+                     icon: "success",
+                     title: res.data.message,
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
+                  refClose.current.click();
+                  setFeedback("");
+               }
+            })
+            .catch((error) => {
+               setFeedbackProcess(false);
+               if (!error.response.data.success) {
+                  Swal.fire({
+                     position: "center",
+                     icon: "warning",
+                     title: error.response.data.message,
+                     showConfirmButton: false,
+                     timer: 1500,
+                  });
+               }
+            });
       }
-      setFeedbackProcess(false);
    };
    return (
       <div
@@ -20,9 +53,7 @@ const FeedbackModal = () => {
          id="my_modal_8"
       >
          <div className="modal-box">
-            <h3 className="font-bold text-lg">
-               Why you deny in this Class? Write feedback
-            </h3>
+            <h3 className="font-bold text-lg">Write Your Feedback</h3>
             <textarea
                placeholder="message"
                value={feedback}
@@ -34,21 +65,22 @@ const FeedbackModal = () => {
             )}
             <div className="modal-action">
                <a
+                  ref={refClose}
                   href="#"
                   className="btn"
                >
                   Cancel
                </a>
-               <button
-                  onClick={handleClick}
-                  className="py-1 px-3 text-white rounded-md text-xs bg-violet-500 disabled:bg-gray-300 min-w-[100px]"
-               >
-                  {feedbackProcess ? (
-                     <FcProcess className="text-[17px] animate-spin w-fit mx-auto" />
-                  ) : (
-                     "Deny"
-                  )}
-               </button>
+               {feedbackProcess ? (
+                  <FcProcess className="text-2xl animate-spin w-fit my-2 mx-5" />
+               ) : (
+                  <button
+                     onClick={handleClick}
+                     className="py-1 px-3 text-white rounded-md text-xs bg-violet-500 disabled:bg-gray-300 min-w-[100px]"
+                  >
+                     Deny
+                  </button>
+               )}
             </div>
          </div>
       </div>
