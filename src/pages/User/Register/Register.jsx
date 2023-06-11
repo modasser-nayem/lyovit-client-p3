@@ -17,6 +17,7 @@ const Register = () => {
       register,
       handleSubmit,
       reset,
+      getValues,
       formState: { errors },
    } = useForm();
    const onSubmit = (data) => {
@@ -39,7 +40,11 @@ const Register = () => {
                   headers: {
                      "content-type": "application/json",
                   },
-                  body: JSON.stringify({ email, name, photoURL }),
+                  body: JSON.stringify({
+                     email: email.toLowerCase(),
+                     name,
+                     photoURL,
+                  }),
                }).then(() => {
                   setProcess(false);
                   Swal.fire({
@@ -122,11 +127,32 @@ const Register = () => {
                      value: 8,
                      message: "The password must be less than 8 character",
                   },
+                  pattern: {
+                     value: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                     message:
+                        "Password must have one Uppercase, one number and one special character.",
+                  },
+               }}
+            />
+            <InputGroup
+               name="confirmPassword"
+               type="password"
+               placeholder="Enter Your confirm password"
+               errorMessage={errors?.confirmPassword?.message}
+               register={register}
+               validation={{
+                  required: "Please enter confirm password!",
+                  validate: {
+                     matchesPreviousPassword: (value) => {
+                        const { password } = getValues();
+                        return password === value || "Passwords should match!";
+                     },
+                  },
                }}
             />
             <InputGroup
                name="photoURL"
-               type="photoURL"
+               type="text"
                placeholder="Enter Your photoURL"
                errorMessage={errors?.photoURL?.message}
                register={register}
@@ -163,7 +189,7 @@ const Register = () => {
             </div>
             <div className="flex justify-center pt-5">
                <div
-                  onClick={loginWithGoogle}
+                  onClick={() => loginWithGoogle(navigate, "/")}
                   className="py-2 px-5 w-full border-2 hover:scale-95 duration-300 border-teal-500 flex items-center justify-center gap-3 rounded-md font-medium cursor-pointer"
                >
                   <FcGoogle className="text-2xl" /> Google Login

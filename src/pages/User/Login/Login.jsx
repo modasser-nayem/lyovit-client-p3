@@ -11,6 +11,7 @@ const Login = () => {
    const [process, setProcess] = useState(false);
    const location = useLocation();
    const navigate = useNavigate();
+   const pathname = location.state?.from?.pathname || "/";
    const { loginCreatedUser, loginWithGoogle } = useAuth();
    const {
       register,
@@ -32,7 +33,7 @@ const Login = () => {
                   showConfirmButton: false,
                   timer: 1500,
                });
-               navigate(location.state?.from?.pathname || "/", {
+               navigate(pathname, {
                   replace: true,
                });
                reset();
@@ -111,7 +112,7 @@ const Login = () => {
             </div>
             <div className="flex justify-center pt-5">
                <div
-                  onClick={loginWithGoogle}
+                  onClick={() => loginWithGoogle(navigate, pathname)}
                   className="py-2 px-5 w-full border-2 hover:scale-95 duration-300 border-teal-500 flex items-center justify-center gap-3 rounded-md font-medium cursor-pointer"
                >
                   <FcGoogle className="text-2xl" /> Google Login

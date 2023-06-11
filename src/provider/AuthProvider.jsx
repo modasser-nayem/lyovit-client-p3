@@ -15,10 +15,6 @@ import Swal from "sweetalert2";
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-   const userRole = "admin";
-   // const userRole = "instructor";
-   // const userRole = "student";
-   // const userRole = "";
    const [user, setUser] = useState(null);
    const [loading, setLoading] = useState(true);
 
@@ -36,21 +32,23 @@ const AuthProvider = ({ children }) => {
       return signInWithEmailAndPassword(auth, email, password);
    };
 
-   const loginWithGoogle = () => {
+   const loginWithGoogle = (navigate, pathname) => {
       setLoading(true);
       const googleProvider = new GoogleAuthProvider();
       signInWithPopup(auth, googleProvider).then((result) => {
-         console.log(result.user.displayName);
          fetch("http://localhost:4000/createUser", {
             method: "POST",
             headers: {
                "content-type": "application/json",
             },
             body: JSON.stringify({
-               email: result.user.email,
+               email: result.user.email.toLowerCase(),
                name: result.user.displayName,
                photoURL: result.user.photoURL,
             }),
+         }).then(() => {
+            setLoading(false);
+            navigate(pathname);
          });
       });
    };
@@ -82,7 +80,14 @@ const AuthProvider = ({ children }) => {
          setUser(currentUser);
          // get and set token
          if (currentUser) {
-            currentUser["role"] = userRole;
+            console.log(currentUser.email);
+            axios
+               .get(`http://localhost:4000/user?email=${currentUser.email}`)
+               .then((res) => {
+                  if (res.data.success) {
+                     currentUser["role"] = res.data.data.role;
+                  }
+               });
             fetch("http://localhost:4000/jwt", {
                method: "POST",
                headers: {

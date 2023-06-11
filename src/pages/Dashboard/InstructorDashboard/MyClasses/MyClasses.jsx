@@ -27,13 +27,8 @@ const MyClasses = () => {
                            </div>
                         </th>
                         <th className="p-2 w-fit">
-                           <div className="text-base font-semibold text-left">
-                              Class Name
-                           </div>
-                        </th>
-                        <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
-                              Instructor Name
+                              Class Name
                            </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
@@ -48,12 +43,22 @@ const MyClasses = () => {
                         </th>
                         <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
+                              Enrolled
+                           </div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                           <div className="text-base font-semibold text-center">
                               Status
                            </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
                               Action
+                           </div>
+                        </th>
+                        <th className="p-2 whitespace-nowrap">
+                           <div className="text-base font-semibold text-center">
+                              Feedback
                            </div>
                         </th>
                      </tr>

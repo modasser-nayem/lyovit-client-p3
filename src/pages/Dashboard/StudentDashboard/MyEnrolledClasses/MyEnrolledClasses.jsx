@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import EnrolledTableRow from "../../../Shared/EnrolledTableRow";
+import EnrolledTableRow from "./EnrolledTableRow";
 
 const MyEnrolledClasses = () => {
    const [enrolledClasses, setenrolledClasses] = useState(null);

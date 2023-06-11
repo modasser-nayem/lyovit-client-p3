@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAuth from "../../Hooks/useAuth";
+import useAuth from "../../../../Hooks/useAuth";
 
 const EnrolledTableRow = ({ enrolledClass, number }) => {
    const navigate = useNavigate();

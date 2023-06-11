@@ -137,14 +137,21 @@ const ManageClassRow = ({ singleClass, number, refetch }) => {
                      "Deny"
                   )}
                </button>
-               <a href="#my_modal_8">
-                  <button
-                     disabled={feedback ? true : false}
-                     className="py-1 px-2 text-white rounded-md text-xs bg-violet-600 disabled:bg-gray-300 min-w-[70px]"
-                  >
+               {status === "deny" ? (
+                  <a href="#my_modal_8">
+                     <button
+                        disabled={feedback ? true : false}
+                        className="py-1 px-2 text-white rounded-md text-xs bg-violet-600 disabled:bg-gray-300 min-w-[70px]"
+                     >
+                        Feedback
+                     </button>
+                  </a>
+               ) : (
+                  <button className="py-1 px-2 text-white rounded-md text-xs bg-violet-600 disabled:bg-gray-300 min-w-[70px]">
                      Feedback
                   </button>
-               </a>
+               )}
+
                <FeedbackModal
                   refetch={refetch}
                   _id={_id}

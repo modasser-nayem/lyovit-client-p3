@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import SelectTableRow from "../../../Shared/SelectTableRow";
+import SelectTableRow from "./SelectTableRow";
 
 const MySelectedClasses = () => {
    const [selectedClasses, setSelectedClasses] = useState(null);

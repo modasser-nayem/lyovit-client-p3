@@ -24,7 +24,7 @@ const Navbar = () => {
                </Link>
             </div>
             <div
-               className={`flex flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
+               className={`flex bg-teal-300 flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
                   isOpen
                      ? "bg-opacity-100 lg:bg-opacity-0 top-[11vh]"
                      : "-top-[700px]"
@@ -59,10 +59,10 @@ const Navbar = () => {
                      <NavLink
                         to={`${
                            user.role === "admin"
-                              ? "dashboard/admin-dashboard"
+                              ? "dashboard/admin-dashboard/manage-users"
                               : user.role === "instructor"
-                              ? "dashboard/instructor-dashboard"
-                              : "dashboard/student-dashboard"
+                              ? "dashboard/instructor-dashboard/my-classes"
+                              : "dashboard/student-dashboard/my-selected-classes"
                         }`}
                         className="cs-nav-link"
                      >
@@ -101,7 +101,7 @@ const Navbar = () => {
                                  </li>
                                  <li>
                                     <Link
-                                       to="/update-profile"
+                                       // to="/update-profile"
                                        className="text-lg"
                                     >
                                        <FaUserEdit /> Update
