@@ -49,18 +49,12 @@ const Navbar = () => {
                   >
                      Classes
                   </NavLink>
-                  <NavLink
-                     to="/access"
-                     className="cs-nav-link"
-                  >
-                     access
-                  </NavLink>
-                  {user?.role && (
+                  {user && (
                      <NavLink
                         to={`${
-                           user.role === "admin"
+                           user?.role === "admin"
                               ? "dashboard/admin-dashboard/manage-users"
-                              : user.role === "instructor"
+                              : user?.role === "instructor"
                               ? "dashboard/instructor-dashboard/my-classes"
                               : "dashboard/student-dashboard/my-selected-classes"
                         }`}

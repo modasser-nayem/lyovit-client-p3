@@ -22,6 +22,9 @@ import MyEnrolledClasses from "../pages/Dashboard/StudentDashboard/MyEnrolledCla
 import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import ClassDetails from "../pages/ClassDetails/ClassDetails";
+import StudentPrivateRoute from "./StudentPrivateRoute";
+import InstructorPrivateRoute from "./InstructorPrivateRoute";
+import AdminPrivateRoute from "./AdminPrivateRoute";
 
 export const router = createBrowserRouter([
    {
@@ -43,7 +46,11 @@ export const router = createBrowserRouter([
          },
          {
             path: "class-details/:id",
-            element: <ClassDetails />,
+            element: (
+               <PrivateRoute>
+                  <ClassDetails />,
+               </PrivateRoute>
+            ),
          },
          {
             path: "register",
@@ -69,24 +76,24 @@ export const router = createBrowserRouter([
                </PrivateRoute>
             ),
          },
-         {
-            path: "access",
-            element: (
-               <PrivateRoute>
-                  <Access />,
-               </PrivateRoute>
-            ),
-         },
       ],
    },
    {
       path: "dashboard",
-      element: <DashboardLayout />,
+      element: (
+         <PrivateRoute>
+            <DashboardLayout />
+         </PrivateRoute>
+      ),
       errorElement: <Error />,
       children: [
          {
             path: "admin-dashboard",
-            element: <AdminDashboard />,
+            element: (
+               <AdminPrivateRoute>
+                  <AdminDashboard />
+               </AdminPrivateRoute>
+            ),
             children: [
                {
                   path: "manage-users",
@@ -100,7 +107,11 @@ export const router = createBrowserRouter([
          },
          {
             path: "instructor-dashboard",
-            element: <InstructorDashboard />,
+            element: (
+               <InstructorPrivateRoute>
+                  <InstructorDashboard />
+               </InstructorPrivateRoute>
+            ),
             children: [
                { path: "add-class", element: <AddClass /> },
                {
@@ -112,7 +123,11 @@ export const router = createBrowserRouter([
          },
          {
             path: "student-dashboard",
-            element: <StudentDashboard />,
+            element: (
+               <StudentPrivateRoute>
+                  <StudentDashboard />
+               </StudentPrivateRoute>
+            ),
             children: [
                { path: "my-selected-classes", element: <MySelectedClasses /> },
                {
