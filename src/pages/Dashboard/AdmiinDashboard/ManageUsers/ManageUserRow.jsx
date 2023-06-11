@@ -1,8 +1,58 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { FcProcess } from "react-icons/fc";
 
-const ManageUserRow = ({ user, number }) => {
+const ManageUserRow = ({ user, number, refetch }) => {
+   const [axiosSecure] = useAxiosSecure();
+   const [adminProcess, setAdminProcess] = useState(false);
+   const [instructorProcess, setInstructorProcess] = useState(false);
    const { _id, name, email, photoURL, role, createdAt } = user;
+
+   const updateUerRole = (role) => {
+      if (role === "admin") {
+         setAdminProcess(true);
+      } else {
+         setInstructorProcess(true);
+      }
+      axiosSecure
+         .patch(`update-role/${_id}?role=${role}`)
+         .then((res) => {
+            if (role === "admin") {
+               setAdminProcess(false);
+            } else {
+               setInstructorProcess(false);
+            }
+            if (res.data.success) {
+               refetch();
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: res.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         })
+         .catch((error) => {
+            if (role === "admin") {
+               setAdminProcess(false);
+            } else {
+               setInstructorProcess(false);
+            }
+            console.log(error.response.data);
+            if (!error.response.data.success) {
+               Swal.fire({
+                  position: "center",
+                  icon: "warning",
+                  title: error.response.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         });
+   };
+
    return (
       <tr>
          <td>{number}</td>
@@ -39,18 +89,32 @@ const ManageUserRow = ({ user, number }) => {
             </div>
          </td>
          <td className="p-2 whitespace-nowrap">
-            <div className="text-center font-medium">
+            <div className="text-center font-medium flex gap-2 justify-center items-center">
                <button
-                  disabled={role === "instructor" ? true : false}
-                  className="py-1 px-3 text-white rounded-md text-xs bg-violet-600 disabled:bg-gray-300 mr-2"
+                  onClick={() => updateUerRole("instructor")}
+                  disabled={
+                     role === "instructor" || role === "admin" ? true : false
+                  }
+                  className="py-1 px-3 text-white rounded-md text-xs bg-violet-600 disabled:bg-gray-300 min-w-[100px]"
                >
-                  Make Instructor
+                  {instructorProcess ? (
+                     <FcProcess className="text-[17px] animate-spin w-fit mx-auto" />
+                  ) : (
+                     "Make Instructor"
+                  )}
                </button>
                <button
-                  disabled={role === "admin" ? true : false}
-                  className="py-1 px-3 text-white rounded-md text-xs bg-teal-600 disabled:bg-gray-300"
+                  onClick={() => updateUerRole("admin")}
+                  disabled={
+                     role === "admin" || role === "instructor" ? true : false
+                  }
+                  className="py-1 px-3 text-white rounded-md text-xs bg-teal-600 disabled:bg-gray-300 min-w-[100px]"
                >
-                  Mack Admin
+                  {adminProcess ? (
+                     <FcProcess className="text-[17px] animate-spin w-fit mx-auto" />
+                  ) : (
+                     "Mack Admin"
+                  )}
                </button>
             </div>
          </td>

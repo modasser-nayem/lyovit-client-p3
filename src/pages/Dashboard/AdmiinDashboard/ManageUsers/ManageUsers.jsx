@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import ManageUserRow from "./ManageUserRow";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../../../Hooks/useAuth";
 
 const ManageUsers = () => {
-   const [users, setUsers] = useState(null);
+   const { user, loading } = useAuth();
    const [axiosSecure] = useAxiosSecure();
-   useEffect(() => {
-      axiosSecure.get("users").then((res) => {
-         setUsers(res.data.data);
-      });
-   }, []);
+   const { refetch, data: users = null } = useQuery({
+      queryKey: ["users", user?.email],
+      enabled: !loading,
+      queryFn: async () => {
+         const res = await axiosSecure.get(`users`);
+         return res.data.data;
+      },
+   });
    return (
       <div className="p-3">
          {users === null ? (
@@ -47,9 +52,10 @@ const ManageUsers = () => {
                      {users &&
                         users.map((user, i) => (
                            <ManageUserRow
-                              key={users._id}
+                              key={i}
                               user={user}
                               number={i + 1}
+                              refetch={refetch}
                            />
                         ))}
                   </tbody>

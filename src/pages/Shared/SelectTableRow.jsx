@@ -1,28 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import useAuth from "../../Hooks/useAuth";
+import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
 
 const SelectTableRow = ({ selectClass, number }) => {
-   const navigate = useNavigate();
-   const { user } = useAuth();
    const { _id, img, class_name, instructor_name, price, seats } = selectClass;
-   const handleDetailsClick = () => {
-      Swal.fire({
-         title: "See You Details!",
-         text: "You have to log in first to view details",
-         icon: "warning",
-         showCancelButton: true,
-         confirmButtonColor: "#3085d6",
-         cancelButtonColor: "#d33",
-         confirmButtonText: "Yes, Login",
-      }).then((result) => {
-         if (result.isConfirmed) {
-            navigate(`/toy-details/${_id}`);
-         }
-      });
-   };
    return (
       <tr>
          <td>{number}</td>
@@ -55,26 +36,17 @@ const SelectTableRow = ({ selectClass, number }) => {
          </td>
          <td className="p-2 whitespace-nowrap">
             <div className="text-center font-medium">
-               {user ? (
-                  <div>
-                     <Link
-                        className="btn btn-sm btn-ghost"
-                        to={`/toy-details/${_id}`}
-                     >
-                        Details
-                     </Link>
-                     <button className="ml-2">
-                        <FaTrash />
-                     </button>
-                  </div>
-               ) : (
-                  <button
-                     onClick={handleDetailsClick}
+               <div>
+                  <Link
                      className="btn btn-sm btn-ghost"
+                     to={`/class-details/${_id}`}
                   >
                      Details
+                  </Link>
+                  <button className="ml-2">
+                     <FaTrash />
                   </button>
-               )}
+               </div>
             </div>
          </td>
       </tr>
