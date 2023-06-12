@@ -80,7 +80,6 @@ const AuthProvider = ({ children }) => {
          setUser(currentUser);
          // get and set token
          if (currentUser) {
-            console.log(currentUser.email);
             axios
                .get(`http://localhost:4000/user?email=${currentUser.email}`)
                .then((res) => {

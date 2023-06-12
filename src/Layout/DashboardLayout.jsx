@@ -79,6 +79,7 @@ const DashboardLayout = () => {
                   <div>
                      {adminLink.map((link, i) => (
                         <motion.p
+                           key={i}
                            initial={{ opacity: 0, x: "-100%" }}
                            whileInView={{ opacity: 1, x: 0 }}
                            transition={{
@@ -90,7 +91,6 @@ const DashboardLayout = () => {
                            <NavLink
                               onClick={() => setHeadTitle(link.name)}
                               to={`admin-dashboard/${link.path}`}
-                              key={i}
                               className="dash-nav-link"
                            >
                               {link.icon}
@@ -103,6 +103,7 @@ const DashboardLayout = () => {
                   <div>
                      {instructorLink.map((link, i) => (
                         <motion.p
+                           key={i}
                            initial={{ opacity: 0, x: "-100%" }}
                            whileInView={{ opacity: 1, x: 0 }}
                            transition={{
@@ -114,7 +115,6 @@ const DashboardLayout = () => {
                            <NavLink
                               onClick={() => setHeadTitle(link.name)}
                               to={`instructor-dashboard/${link.path}`}
-                              key={i}
                               className="dash-nav-link"
                            >
                               {link.icon}
@@ -127,6 +127,7 @@ const DashboardLayout = () => {
                   <div>
                      {studentLink.map((link, i) => (
                         <motion.p
+                           key={i}
                            initial={{ opacity: 0, x: "-100%" }}
                            whileInView={{ opacity: 1, x: 0 }}
                            transition={{
@@ -138,7 +139,6 @@ const DashboardLayout = () => {
                            <NavLink
                               onClick={() => setHeadTitle(link.name)}
                               to={`student-dashboard/${link.path}`}
-                              key={i}
                               className="dash-nav-link"
                            >
                               {link.icon}
