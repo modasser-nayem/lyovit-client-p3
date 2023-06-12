@@ -76,7 +76,7 @@ const ManageUserRow = ({ user, number, refetch }) => {
          <td className="p-2 whitespace-nowrap">
             <div className="text-center font-medium text-green-500">
                <span
-                  className={`text-lg ${
+                  className={`text-lg capitalize ${
                      role === "instructor"
                         ? "text-violet-600"
                         : role === "admin"

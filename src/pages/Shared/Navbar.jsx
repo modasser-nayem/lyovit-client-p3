@@ -64,7 +64,7 @@ const Navbar = () => {
                      </NavLink>
                   )}
                </div>
-               <div className="flex flex-col lg:flex-row gap-3 items-end lg:items-center">
+               <div className="flex md:mt-3 lg:mt-0 flex-col lg:flex-row gap-3 items-end lg:items-center">
                   {!loading && (
                      <>
                         {user ? (
@@ -82,7 +82,7 @@ const Navbar = () => {
                               </label>
                               <ul
                                  tabIndex={0}
-                                 className="menu menu-compact dropdown-content mt-3 p-2 shadow-xl bg-base-100 rounded-box w-52"
+                                 className="menu menu-compact dropdown-content p-2 shadow-xl bg-base-100 rounded-box w-52"
                               >
                                  <li>
                                     <Link

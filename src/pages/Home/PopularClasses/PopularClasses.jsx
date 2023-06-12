@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { server } from "../../main";
-import PopularClassCard from "../Home/PopularClasses/PopularClassCard";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { server } from "../../../main";
+import PopularClassCard from "./PopularClassCard";
 
-const Classes = () => {
+const PopularClasses = () => {
    const [classes, setClasses] = useState(null);
    useEffect(() => {
       axios
@@ -17,7 +17,10 @@ const Classes = () => {
          });
    }, []);
    return (
-      <div className="cs-container pt-16">
+      <div className="pt-24">
+         <h2 className="w-fit px-5 py-2 text-2xl md:text-3xl text-gray-600 font-semibold text-center border-b-4 border-b-teal-600 mx-auto">
+            Popular Classes
+         </h2>
          {!classes ? (
             <h2 className="mt-24 text-2xl text-center animate-pulse">
                Loading...
@@ -36,4 +39,4 @@ const Classes = () => {
    );
 };
 
-export default Classes;
+export default PopularClasses;

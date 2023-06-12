@@ -83,7 +83,7 @@ const ManageClassRow = ({ singleClass, number, refetch }) => {
             </div>
          </td>
          <div className="text-center text-gray-800">
-            <h2 className="text-base pt-1">{instructor_name}</h2>
+            <h2 className="text-base pt-1 capitalize">{instructor_name}</h2>
             <small className="text-xs">{instructor_email}</small>
          </div>
          <td className="p-2 whitespace-nowrap">

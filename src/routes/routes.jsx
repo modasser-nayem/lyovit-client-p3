@@ -9,7 +9,6 @@ import Register from "../pages/User/Register/Register";
 import Login from "../pages/User/Login/Login";
 import DashboardLayout from "../Layout/DashboardLayout";
 import AdminDashboard from "../pages/Dashboard/AdmiinDashboard/AdminDashboard";
-import Access from "../pages/Access";
 import StudentDashboard from "../pages/Dashboard/StudentDashboard/StudentDashboard";
 import InstructorDashboard from "../pages/Dashboard/InstructorDashboard/InstructorDashboard";
 import ManageUsers from "../pages/Dashboard/AdmiinDashboard/ManageUsers/ManageUsers";

@@ -14,7 +14,9 @@ const MyClassTableRow = ({ myClass, number }) => {
    } = myClass;
    return (
       <tr>
-         <td>{number}</td>
+         <td className="p-2 whitespace-nowrap">
+            <div className="text-center font-bold">{number}</div>
+         </td>
          <td className="p-2 whitespace-nowrap">
             <div className="flex items-center w-fit">
                <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
@@ -62,13 +64,13 @@ const MyClassTableRow = ({ myClass, number }) => {
          <td className="p-2 whitespace-nowrap">
             <div className="text-center font-medium">
                <Link
-                  className="btn btn-sm btn-ghost"
+                  className="bg-gray-300 hover:bg-gray-400 py-1.5 px-4 rounded-md mr-2"
                   to={`/class-details/${_id}`}
                >
                   Details
                </Link>
                <Link
-                  className="btn btn-sm btn-ghost"
+                  className="bg-yellow-500 hover:bg-yellow-600 py-1.5 px-4 rounded-md"
                   to={`/dashboard/instructor-dashboard/update-class/${_id}`}
                >
                   Update

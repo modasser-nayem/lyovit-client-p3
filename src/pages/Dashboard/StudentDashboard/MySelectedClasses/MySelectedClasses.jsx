@@ -16,10 +16,14 @@ const MySelectedClasses = () => {
             <h2 className="text-3xl font-semibold animate-pulse text-center pt-16">
                Loading...
             </h2>
+         ) : selectedClasses.length === 0 ? (
+            <h2 className="text-center text-2xl">
+               There are currently no selected classes
+            </h2>
          ) : (
             <div className="overflow-x-auto">
                <table className="table-auto w-full">
-                  <thead className="text-xs font-semibold uppercase text-gray-400 bg-gray-50">
+                  <thead className="text-xs font-semibold uppercase text-gray-200 bg-teal-600">
                      <tr>
                         <th className="p-2 w-fit">
                            <div className="text-base font-semibold text-left">

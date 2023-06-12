@@ -45,7 +45,7 @@ const UpdateClass = () => {
                      showConfirmButton: false,
                      timer: 1500,
                   });
-                  navigate(`/class-details/${params.id}`, {
+                  navigate(`/dashboard/instructor-dashboard/my-classes`, {
                      replace: true,
                   });
                } else {

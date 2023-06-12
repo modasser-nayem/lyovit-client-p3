@@ -24,7 +24,9 @@ const SelectTableRow = ({ selectClass, number }) => {
             </div>
          </td>
          <td className="p-2 font-medium whitespace-nowrap">
-            <div className="text-center text-lg">{instructor_name}</div>
+            <div className="text-center text-lg capitalize">
+               {instructor_name}
+            </div>
          </td>
          <td className="p-2 whitespace-nowrap">
             <div className="text-left font-bold">${price}</div>
