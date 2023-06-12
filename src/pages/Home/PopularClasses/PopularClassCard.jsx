@@ -6,9 +6,9 @@ import Swal from "sweetalert2";
 const PopularClassCard = ({ singleClass }) => {
    const navigate = useNavigate();
    const { user } = useAuth();
-   const { _id, class_name, img, instructor_name, seats, price } = singleClass;
+   const { _id, class_name, img, seats, price } = singleClass;
 
-   const handleClick = (text) => {
+   const handleClick = () => {
       Swal.fire({
          title: "See You Details!",
          text: "You have to log in first to view details",
@@ -19,30 +19,22 @@ const PopularClassCard = ({ singleClass }) => {
          confirmButtonText: "Yes, Login",
       }).then((result) => {
          if (result.isConfirmed) {
-            if (text === "details") {
-               navigate(`/class-details/${_id}`);
-            } else {
-               navigate("/login");
-            }
+            navigate(`/class-details/${_id}`);
          }
       });
    };
 
-   const handleSelect = () => {
-      console.log("select");
-   };
    return (
-      <div className="shadow-2xl">
+      <div className="shadow-2xl p-2 relative group overflow-hidden">
          <img
-            className="h-[250px] w-full rounded-t-md"
+            className="h-[250px] w-full rounded-t-md group-hover:scale-110 duration-500"
             src={img}
             alt={class_name}
          />
-         <div className="p-5">
+         <div className="p-5 absolute left-0 bottom-[-100%] opacity-0 group-hover:bottom-0 group-hover:opacity-100 w-full h-full bg-black/70 transition-all duration-500 text-gray-100">
             <h2 className="text-2xl font-semibold pb-1">{class_name}</h2>
-            <p className="font-semibold">Instructor: {instructor_name}</p>
             <p className="font-semibold py-1">
-               Seat:{" "}
+               Available Seat:{" "}
                <span
                   className={`${
                      seats === 0
@@ -55,38 +47,23 @@ const PopularClassCard = ({ singleClass }) => {
                   {seats}
                </span>
             </p>
-            <p className="text-xl text-gray-600 font-bold">
-               Price: <span className="text-black">${price}</span>
+            <p className="text-xl font-bold">
+               Price: <span className="">${price}</span>
             </p>
-            <div className="flex items-center justify-end gap-5 mt-4">
+            <div className="flex items-center justify-center gap-5 mt-4 h-full pb-16">
                {user ? (
                   <Link
-                     className="py-2 px-5 rounded-md bg-gray-300 hover:bg-gray-400"
+                     className="py-2 px-5 w-full text-center rounded-md text-white bg-teal-500 hover:bg-teal-600"
                      to={`/class-details/${_id}`}
                   >
-                     Details
+                     View Details
                   </Link>
                ) : (
                   <button
-                     className="py-2 px-5 rounded-md bg-gray-300 hover:bg-gray-400"
+                     className="relative bottom-0 py-2 px-5 w-full text-center rounded-md text-white bg-teal-500 hover:bg-teal-600"
                      onClick={() => handleClick("details")}
                   >
-                     Details
-                  </button>
-               )}
-               {user ? (
-                  <button
-                     className="py-2 px-5 rounded-md bg-teal-500 hover:bg-teal-600 text-white"
-                     onClick={handleSelect}
-                  >
-                     Select
-                  </button>
-               ) : (
-                  <button
-                     className="py-2 px-5 rounded-md bg-teal-500 hover:bg-teal-600 text-white"
-                     onClick={() => handleClick("select")}
-                  >
-                     Select
+                     View Details
                   </button>
                )}
             </div>
