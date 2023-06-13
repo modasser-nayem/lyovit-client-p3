@@ -1,12 +1,43 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FaTrash } from "react-icons/fa";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
-const SelectTableRow = ({ selectClass, number }) => {
+const SelectTableRow = ({ selectClass, number, refetch }) => {
    const { _id, img, class_name, instructor_name, price, seats } = selectClass;
+
+   const [axiosSecure] = useAxiosSecure();
+   const deleteSelectClass = () => {
+      axiosSecure
+         .delete(`select-class/${_id}`)
+         .then((res) => {
+            if (res.data?.success) {
+               refetch();
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: res.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         })
+         .catch((error) => {
+            if (!error.response?.data?.success) {
+               Swal.fire({
+                  position: "center",
+                  icon: "warning",
+                  title: error.response.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         });
+   };
    return (
       <tr>
-         <td>{number}</td>
+         <td className="pl-4">{number}</td>
          <td className="p-2 whitespace-nowrap">
             <div className="flex items-center w-fit">
                <div className="w-12 h-12 flex-shrink-0 mr-2 sm:mr-3">
@@ -29,7 +60,7 @@ const SelectTableRow = ({ selectClass, number }) => {
             </div>
          </td>
          <td className="p-2 whitespace-nowrap">
-            <div className="text-left font-bold">${price}</div>
+            <div className="text-center font-bold">${price}</div>
          </td>
          <td className="p-2 whitespace-nowrap">
             <div className="text-center font-medium text-green-500">
@@ -40,13 +71,22 @@ const SelectTableRow = ({ selectClass, number }) => {
             <div className="text-center font-medium">
                <div>
                   <Link
-                     className="btn btn-sm btn-ghost"
+                     className="bg-gray-300 hover:bg-gray-400 py-1.5 px-4 rounded-md mr-2"
                      to={`/class-details/${_id}`}
                   >
                      Details
                   </Link>
-                  <button className="ml-2">
-                     <FaTrash />
+                  <Link
+                     className="bg-yellow-500 hover:bg-yellow-600 py-1.5 px-4 rounded-md mr-2"
+                     to={`/class-details/${_id}`}
+                  >
+                     Pay
+                  </Link>
+                  <button
+                     onClick={deleteSelectClass}
+                     className="ml-2"
+                  >
+                     <FaTrash className="text-red-700 hover:scale-125 duration-300 transition-all" />
                   </button>
                </div>
             </div>

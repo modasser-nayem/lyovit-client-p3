@@ -87,18 +87,12 @@ const AuthProvider = ({ children }) => {
                      currentUser["role"] = res.data.data.role;
                   }
                });
-            fetch("http://localhost:4000/jwt", {
-               method: "POST",
-               headers: {
-                  "content-type": "application/json",
-               },
-               body: JSON.stringify({
-                  email: currentUser.email,
-               }),
-            })
-               .then((res) => res.json())
-               .then((data) => {
-                  localStorage.setItem("access-token", data.token);
+            axios
+               .post("http://localhost:4000/jwt", {
+                  email: currentUser?.email,
+               })
+               .then((res) => {
+                  localStorage.setItem("access-token", res.data.token);
                   setLoading(false);
                })
                .catch((error) => {

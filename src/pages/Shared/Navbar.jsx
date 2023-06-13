@@ -3,7 +3,7 @@ import { MdOutlineLogin, MdLogout, MdClose } from "react-icons/md";
 import { FaBars, FaUser, FaUserEdit } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
-import logo from "../../assets/logo/educations_logo.png";
+import logo from "../../assets/logo/logo.svg";
 
 const Navbar = () => {
    const [isOpen, setIsOpen] = useState(false);
@@ -16,11 +16,16 @@ const Navbar = () => {
                   className="flex items-center"
                   to="/"
                >
-                  <img
-                     className="h-12 pr-2"
-                     src={logo}
-                     alt="brand logo"
-                  />
+                  <div className="flex items-center gap-2">
+                     <img
+                        className="w-[40px]"
+                        src={logo}
+                        alt=""
+                     />
+                     <h1 className="text-3xl font-bold">
+                        Lyo<span className="text-teal-600">vit</span>
+                     </h1>
+                  </div>
                </Link>
             </div>
             <div

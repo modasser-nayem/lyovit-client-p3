@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../Banner/Banner";
 import PopularClasses from "../PopularClasses/PopularClasses";
 import PopularInstructors from "../PopularInstructors/PopularInstructors";
+import OurImpact from "../OurImpact/OurImpact";
 
 const Home = () => {
    return (
@@ -9,6 +10,7 @@ const Home = () => {
          <Banner />
          <PopularClasses />
          <PopularInstructors />
+         <OurImpact />
       </div>
    );
 };

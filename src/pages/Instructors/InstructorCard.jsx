@@ -4,7 +4,6 @@ import { RxDotFilled } from "react-icons/rx";
 const InstructorCard = ({ singleInstructor }) => {
    const { _id, email, name, name_of_classes, number_of_classes, photoURL } =
       singleInstructor;
-   console.log(singleInstructor);
    return (
       <div className="shadow-2xl">
          <div className="overflow-hidden  h-[200px]">
@@ -15,13 +14,13 @@ const InstructorCard = ({ singleInstructor }) => {
             />
          </div>
          <div className="p-5">
-            <h2 className="text-2xl font-semibold">{name}</h2>
+            <h2 className="text-xl font-semibold">Name: {name}</h2>
             <p className="mb-2">Email: {email}</p>
             <p className="font-semibold">
                Number of Classes: {number_of_classes}
             </p>
             <ul>
-               <p className="font-semibold">My Classes</p>
+               <p className="font-semibold">Classes</p>
                {name_of_classes.map((className, i) => (
                   <li
                      key={i}

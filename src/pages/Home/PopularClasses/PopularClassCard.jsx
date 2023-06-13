@@ -27,7 +27,7 @@ const PopularClassCard = ({ singleClass }) => {
    return (
       <div className="shadow-2xl p-2 relative group overflow-hidden">
          <img
-            className="h-[250px] w-full rounded-t-md group-hover:scale-110 duration-500"
+            className="h-[250px] w-full overflow-hidden rounded-t-md group-hover:scale-110 duration-500"
             src={img}
             alt={class_name}
          />

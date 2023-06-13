@@ -1,28 +1,9 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import useAuth from "../../../../Hooks/useAuth";
+import { Link } from "react-router-dom";
 
 const EnrolledTableRow = ({ enrolledClass, number }) => {
-   const navigate = useNavigate();
-   const { user } = useAuth();
    const { _id, img, class_name, instructor_name, price, seats } =
       enrolledClass;
-   const handleDetailsClick = () => {
-      Swal.fire({
-         title: "See You Details!",
-         text: "You have to log in first to view details",
-         icon: "warning",
-         showCancelButton: true,
-         confirmButtonColor: "#3085d6",
-         cancelButtonColor: "#d33",
-         confirmButtonText: "Yes, Login",
-      }).then((result) => {
-         if (result.isConfirmed) {
-            navigate(`/toy-details/${_id}`);
-         }
-      });
-   };
    return (
       <tr>
          <td>{number}</td>
@@ -57,21 +38,12 @@ const EnrolledTableRow = ({ enrolledClass, number }) => {
          </td>
          <td className="p-2 whitespace-nowrap">
             <div className="text-center font-medium">
-               {user ? (
-                  <Link
-                     className="btn btn-sm btn-ghost"
-                     to={`/class-details/${_id}`}
-                  >
-                     Details
-                  </Link>
-               ) : (
-                  <button
-                     onClick={handleDetailsClick}
-                     className="btn btn-sm btn-ghost"
-                  >
-                     Details
-                  </button>
-               )}
+               <Link
+                  className="bg-gray-300 hover:bg-gray-400 py-1.5 px-4 rounded-md mr-2"
+                  to={`/class-details/${_id}`}
+               >
+                  Details
+               </Link>
             </div>
          </td>
       </tr>

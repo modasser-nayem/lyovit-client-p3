@@ -2,10 +2,12 @@ import React from "react";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const ClassCard = ({ singleClass }) => {
    const navigate = useNavigate();
    const { user } = useAuth();
+   const [axiosSecure] = useAxiosSecure();
    const {
       _id,
       class_name,
@@ -37,8 +39,32 @@ const ClassCard = ({ singleClass }) => {
    };
 
    const handleSelect = () => {
-      console.log("select");
+      axiosSecure
+         .post(`/select-class/${_id}`)
+         .then((res) => {
+            if (res.data?.success) {
+               Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: res.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         })
+         .catch((error) => {
+            if (!error.response?.data?.success) {
+               Swal.fire({
+                  position: "center",
+                  icon: "warning",
+                  title: error.response.data.message,
+                  showConfirmButton: false,
+                  timer: 1500,
+               });
+            }
+         });
    };
+
    return (
       <div className="shadow-2xl relative">
          <img

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import logo from "../assets/logo/educations_logo.png";
+import logo from "../assets/logo/logo.svg";
 import {
    FaBookmark,
    FaHome,
@@ -51,11 +51,15 @@ const DashboardLayout = () => {
    return (
       <div className="grid grid-cols-8">
          <div className="col-span-2 h-screen p-5">
-            <div className="w-[200px] h-[100px] mb-5">
+            <div className="mb-10 flex items-center gap-2">
                <img
+                  className="w-[50px]"
                   src={logo}
                   alt=""
                />
+               <h1 className="text-4xl font-bold">
+                  Lyo<span className="text-teal-600">vit</span>
+               </h1>
             </div>
             <div className="pl-5">
                <motion.p

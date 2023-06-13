@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 import SelectTableRow from "./SelectTableRow";
+import useAuth from "../../../../Hooks/useAuth";
+import { useQuery } from "@tanstack/react-query";
 
 const MySelectedClasses = () => {
-   const [selectedClasses, setSelectedClasses] = useState(null);
+   const { user, loading } = useAuth();
    const [axiosSecure] = useAxiosSecure();
-   useEffect(() => {
-      axiosSecure.get("my-selected-class").then((res) => {
-         setSelectedClasses(res.data.data);
-      });
-   }, []);
+   const { refetch, data: selectedClasses = null } = useQuery({
+      queryKey: ["select-classes", user?.email],
+      enabled: !loading,
+      queryFn: async () => {
+         const res = await axiosSecure.get(`my-selected-class`);
+         return res.data.data;
+      },
+   });
    return (
       <div className="p-3">
          {selectedClasses === null ? (
@@ -26,12 +31,12 @@ const MySelectedClasses = () => {
                   <thead className="text-xs font-semibold uppercase text-gray-200 bg-teal-600">
                      <tr>
                         <th className="p-2 w-fit">
-                           <div className="text-base font-semibold text-left">
+                           <div className="text-base font-semibold text-center pl-2">
                               #
                            </div>
                         </th>
                         <th className="p-2 w-fit">
-                           <div className="text-base font-semibold text-left">
+                           <div className="text-base font-semibold text-center">
                               Class Name
                            </div>
                         </th>
@@ -41,7 +46,7 @@ const MySelectedClasses = () => {
                            </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
-                           <div className="text-base font-semibold text-left">
+                           <div className="text-base font-semibold text-center">
                               Price
                            </div>
                         </th>
@@ -52,7 +57,7 @@ const MySelectedClasses = () => {
                         </th>
                         <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
-                              Details
+                              Action
                            </div>
                         </th>
                      </tr>
@@ -64,6 +69,7 @@ const MySelectedClasses = () => {
                               key={selectClass._id}
                               selectClass={selectClass}
                               number={i + 1}
+                              refetch={refetch}
                            />
                         ))}
                   </tbody>

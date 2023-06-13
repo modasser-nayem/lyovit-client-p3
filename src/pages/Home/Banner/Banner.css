@@ -14,5 +14,5 @@
    top: 40%;
    left: 0px;
    backdrop-filter: blur(10px);
-   z-index: 50;
+   z-index: 1;
 }

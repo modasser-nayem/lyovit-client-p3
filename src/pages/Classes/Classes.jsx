@@ -7,7 +7,7 @@ const Classes = () => {
    const [classes, setClasses] = useState(null);
    useEffect(() => {
       axios
-         .get(`${server}/classes`)
+         .get(`${server}/approved-classes`)
          .then((res) => {
             setClasses(res.data.data);
          })

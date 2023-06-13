@@ -162,7 +162,7 @@ const ManageClassRow = ({ singleClass, number, refetch }) => {
             <div className="text-center font-medium">
                <div>
                   <Link
-                     className="btn btn-sm btn-ghost"
+                     className="bg-gray-300 hover:bg-gray-400 py-1.5 px-4 rounded-md mr-2"
                      to={`/class-details/${_id}`}
                   >
                      Details
