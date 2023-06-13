@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const EnrolledTableRow = ({ enrolledClass, number }) => {
-   const { _id, img, class_name, instructor_name, price, seats } =
-      enrolledClass;
+const PaymentHistoryRow = ({ payment, number }) => {
+   const { _id, img, class_id, class_name, amount, createdAt } = payment;
    return (
       <tr>
-         <td>{number}</td>
-         <td className="p-2 whitespace-nowrap">
-            <div className="flex items-center w-fit">
-               <div className="w-12 h-12 flex-shrink-0 mr-2 sm:mr-3">
+         <td className="pl-4">{number}</td>
+         <td className="p-2 text-center whitespace-nowrap">
+            <div className="flex items-center mx-auto w-fit">
+               <div className="w-12 h-12 mr-2 sm:mr-3">
                   <img
                      className="rounded-full h-full w-full"
                      src={img}
@@ -23,24 +22,19 @@ const EnrolledTableRow = ({ enrolledClass, number }) => {
                </div>
             </div>
          </td>
-         <td className="p-2 font-medium whitespace-nowrap">
-            <div className="text-center text-lg capitalize">
-               {instructor_name}
-            </div>
-         </td>
          <td className="p-2 whitespace-nowrap">
-            <div className="text-center font-bold">${price}</div>
+            <div className="text-center font-bold">${amount}</div>
          </td>
          <td className="p-2 whitespace-nowrap">
             <div className="text-center font-medium text-green-500">
-               {seats}
+               {createdAt}
             </div>
          </td>
          <td className="p-2 whitespace-nowrap">
-            <div className="text-center font-medium">
+            <div className="text-left font-medium">
                <Link
                   className="bg-gray-300 hover:bg-gray-400 py-1.5 px-4 rounded-md mr-2"
-                  to={`/class-details/${_id}`}
+                  to={`/class-details/${class_id}`}
                >
                   Details
                </Link>
@@ -50,4 +44,4 @@ const EnrolledTableRow = ({ enrolledClass, number }) => {
    );
 };
 
-export default EnrolledTableRow;
+export default PaymentHistoryRow;

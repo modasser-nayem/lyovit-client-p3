@@ -12,6 +12,7 @@ import {
 import { FcManager } from "react-icons/fc";
 import { NavLink, Outlet } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import { MdPayment } from "react-icons/md";
 
 const DashboardLayout = () => {
    const { user } = useAuth();
@@ -47,10 +48,15 @@ const DashboardLayout = () => {
          name: "My Enrolled Classes",
          icon: <FaBookmark />,
       },
+      {
+         path: "payment-history",
+         name: "Payment History",
+         icon: <MdPayment className="text-xl" />,
+      },
    ];
    return (
-      <div className="grid grid-cols-8">
-         <div className="col-span-2 h-screen p-5">
+      <div className="lg:grid grid-cols-8">
+         <div className="col-span-2 lg:h-screen p-5">
             <div className="mb-10 flex items-center gap-2">
                <img
                   className="w-[50px]"

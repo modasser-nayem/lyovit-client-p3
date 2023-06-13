@@ -78,7 +78,7 @@ const SelectTableRow = ({ selectClass, number, refetch }) => {
                   </Link>
                   <Link
                      className="bg-yellow-500 hover:bg-yellow-600 py-1.5 px-4 rounded-md mr-2"
-                     to={`/class-details/${_id}`}
+                     to={`/dashboard/student-dashboard/payment/${_id}`}
                   >
                      Pay
                   </Link>

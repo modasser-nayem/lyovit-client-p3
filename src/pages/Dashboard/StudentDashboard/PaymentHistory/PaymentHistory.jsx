@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
-import EnrolledTableRow from "./EnrolledTableRow";
+import PaymentHistoryRow from "./PaymentHistoryRow";
 
-const MyEnrolledClasses = () => {
-   const [enrolledClasses, setEnrolledClasses] = useState(null);
+const PaymentHistory = () => {
+   const [paymentHistory, setPaymentHistory] = useState(null);
    const [axiosSecure] = useAxiosSecure();
    useEffect(() => {
-      axiosSecure.get("my-enrolled-class").then((res) => {
-         setEnrolledClasses(res.data.data);
+      axiosSecure.get("payment-history").then((res) => {
+         setPaymentHistory(res.data.data);
       });
    }, []);
    return (
       <div className="p-3">
-         {enrolledClasses === null ? (
+         {paymentHistory === null ? (
             <h2 className="text-3xl font-semibold animate-pulse text-center pt-16">
                Loading...
             </h2>
-         ) : enrolledClasses.length === 0 ? (
+         ) : paymentHistory.length === 0 ? (
             <h2 className="text-center text-2xl">
-               There are currently no enrolledClasses
+               There are currently no Payment History
             </h2>
          ) : (
             <div className="overflow-x-auto">
@@ -26,43 +26,38 @@ const MyEnrolledClasses = () => {
                   <thead className="text-xs font-semibold uppercase text-gray-200 bg-teal-600">
                      <tr>
                         <th className="p-2 w-fit">
-                           <div className="text-base font-semibold center">
+                           <div className="text-base font-semibold text-center">
                               #
                            </div>
                         </th>
-                        <th className="p-2 w-fit">
+                        <th className="p-2 mx-auto w-fit">
                            <div className="text-base font-semibold text-center">
                               Class Name
                            </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
-                              Instructor Name
-                           </div>
-                        </th>
-                        <th className="p-2 whitespace-nowrap">
-                           <div className="text-base font-semibold center">
-                              Price
+                              Amount
                            </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
                            <div className="text-base font-semibold text-center">
-                              Seats
+                              Paid At
                            </div>
                         </th>
                         <th className="p-2 whitespace-nowrap">
-                           <div className="text-base font-semibold text-center">
+                           <div className="text-base font-semibold text-left">
                               Details
                            </div>
                         </th>
                      </tr>
                   </thead>
                   <tbody className="text-sm divide-y divide-gray-100">
-                     {enrolledClasses &&
-                        enrolledClasses.map((enrolledClass, i) => (
-                           <EnrolledTableRow
-                              key={enrolledClass._id}
-                              enrolledClass={enrolledClass}
+                     {paymentHistory &&
+                        paymentHistory.map((payment, i) => (
+                           <PaymentHistoryRow
+                              key={payment._id}
+                              payment={payment}
                               number={i + 1}
                            />
                         ))}
@@ -73,5 +68,4 @@ const MyEnrolledClasses = () => {
       </div>
    );
 };
-
-export default MyEnrolledClasses;
+export default PaymentHistory;

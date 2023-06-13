@@ -5,9 +5,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 // class image
-import img1 from "../../../assets/banner/summer_40_dis.jpg";
-import img3 from "../../../assets/banner/summer_offer.avif";
-import img2 from "../../../assets/banner/class_room.jpg";
+import img1 from "../../../assets/banner/banner1.jpg";
+import img2 from "../../../assets/banner/banner2.jpg";
+import img3 from "../../../assets/banner/banner3.avif";
 
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { RxDotFilled } from "react-icons/rx";

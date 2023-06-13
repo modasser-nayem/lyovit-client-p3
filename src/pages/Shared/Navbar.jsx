@@ -29,7 +29,7 @@ const Navbar = () => {
                </Link>
             </div>
             <div
-               className={`flex bg-teal-300 flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
+               className={`flex bg-teal-200 flex-col lg:flex-row items-center absolute lg:static -z-auto lg:-z-[-40] w-full lg:w-auto p-8 lg:p-0 left-0 bg-opacity-0 right-0 transition-all md:transition-none duration-500 ${
                   isOpen
                      ? "bg-opacity-100 lg:bg-opacity-0 top-[11vh]"
                      : "-top-[700px]"
