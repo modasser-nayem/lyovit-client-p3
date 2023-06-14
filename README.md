@@ -1,8 +1,8 @@
 <a name="readme-top"></a>
 
-# Lyovit ![product-logo](/public/logo.png)
+# ![product-logo](/public/logo.png)
 
-### Live Demo: [https://simple-firebase-ph.web.app/]https://simple-firebase-ph.web.app/)
+### Live Demo: [https://simple-firebase-ph.web.app/](https://simple-firebase-ph.web.app/)
 
 <br/>
 <!-- ABOUT THE PROJECT -->
