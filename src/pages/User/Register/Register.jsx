@@ -35,7 +35,7 @@ const Register = () => {
                   photoURL,
                });
                logoutUser("");
-               fetch("http://localhost:4000/createUser", {
+               fetch("https://lyovit.onrender.com/createUser", {
                   method: "POST",
                   headers: {
                      "content-type": "application/json",

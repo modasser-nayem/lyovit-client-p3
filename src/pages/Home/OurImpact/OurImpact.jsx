@@ -26,7 +26,7 @@ const OurImpact = () => {
                Loading...
             </h2>
          ) : (
-            <div className="mt-16 max-w-[600px] mx-auto flex gap-5 items-center justify-around bg-teal-200 p-5 md:p-10 rounded-md">
+            <div className="mt-16 max-w-[700px] mx-auto flex gap-5 items-center justify-around bg-teal-200 p-5 md:p-10 rounded-md">
                <div className="text-center">
                   <h2 className="text-4xl font-bold">
                      <CountUp

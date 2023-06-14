@@ -30,7 +30,7 @@ const PaymentHistory = () => {
                               #
                            </div>
                         </th>
-                        <th className="p-2 mx-auto w-fit">
+                        <th className="p-2 w-fit">
                            <div className="text-base font-semibold text-center">
                               Class Name
                            </div>

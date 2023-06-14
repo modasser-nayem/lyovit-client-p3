@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       const googleProvider = new GoogleAuthProvider();
       signInWithPopup(auth, googleProvider).then((result) => {
-         fetch("http://localhost:4000/createUser", {
+         fetch("https://lyovit.onrender.com/createUser", {
             method: "POST",
             headers: {
                "content-type": "application/json",
@@ -81,14 +81,16 @@ const AuthProvider = ({ children }) => {
          // get and set token
          if (currentUser) {
             axios
-               .get(`http://localhost:4000/user?email=${currentUser.email}`)
+               .get(
+                  `https://lyovit.onrender.com/user?email=${currentUser.email}`
+               )
                .then((res) => {
                   if (res.data.success) {
                      currentUser["role"] = res.data.data.role;
                   }
                });
             axios
-               .post("http://localhost:4000/jwt", {
+               .post("https://lyovit.onrender.com/jwt", {
                   email: currentUser?.email,
                })
                .then((res) => {
